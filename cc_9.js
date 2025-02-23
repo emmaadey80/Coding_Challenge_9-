@@ -35,10 +35,10 @@ class Manager extends Employee { // extending employee to manager
         super(name, id, department, salary); 
         this.teamSize = teamSize; 
     }; 
-    getDetails() {
+    getDetails() { // include team size
         return `Manager: ${this.name}, Id: ${this.id}, Department: ${this.department}, Salary: $${this.salary}, Team Size: ${this.teamSize}`;
     } 
-    calculateBonus() {
+    calculateBonus() { // calculating bonus for 10% of the managers annual salary
         return this.salary * 12 * 0.10; 
     }
 }; 
@@ -51,3 +51,28 @@ console.log(mgr1.getDetails());
 console.log(mgr1.calculateBonus()); 
 // Expected output: 9600
 
+
+// Task 3: Creating a Company Class
+console.log("\nTask 3: Creating a Company Class");
+
+class Company { // creating a class 'company'
+    constructor(name) { // propery for companys name
+        this.name = name;
+        this.employees = []; // array 'employees'
+    };
+    addEmployee(employee) { // adds employee to the array
+        this.employees.push(employee);
+    }
+    listEmployees() { // logs employees details
+        this.employees.forEach(employee => console.log(employee.getDetails()));
+    }
+}
+
+// Logging test cases output:
+const company = new Company("TechCorp");
+company.addEmployee(emp1);
+company.addEmployee(mgr1);
+company.listEmployees();
+// Expected output:
+// "Employee: Alice Johnson, ID: 101, Department: Sales, Salary: $5000"
+// "Manager: John Smith, ID: 201, Department: IT, Salary: $8000, Team Size: 5"
