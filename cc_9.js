@@ -41,7 +41,7 @@ class Manager extends Employee { // extending employee to manager
     calculateBonus() { // calculating bonus for 10% of the managers annual salary
         return this.salary * 12 * 0.10; 
     }
-    calculateAnnualSalary() {
+    calculateAnnualSalary() { // modifying task 4 
         return (this.salary * 12) + this.calculateBonus(); // Manager's annual salary includes bonus
       }
 }; 
@@ -70,12 +70,16 @@ class Company { // creating a class 'company'
         this.employees.forEach(employee => console.log(employee.getDetails()));
     }
     // Task 4: 
-    calculateTotalPayroll() {
+    calculateTotalPayroll() { // returns sum of all employees salaries
         let total = 0; // total payroll
         return this.employees.reduce((total, employee) => {
             return total + employee.calculateAnnualSalary(); 
         }, 0); 
     }
+    promoteToManager (employee, teamSize) {
+        const index = this.employees.indexOf(employee);
+         this.employees[index] = new Manager(employee.name, employee.id, employee.department, employee.salary, teamSize); // promotion to manager
+     }
 }
 
 // Logging test cases output:
@@ -90,8 +94,15 @@ company.listEmployees();
 // Task 4: Implementing a Payroll System
 console.log("\nTask 4: Implementing a Payroll System");
 
+// Logging test cases output:
 console.log(company.calculateTotalPayroll()); 
 // Expected output: 165600 (assuming emp1 and mgr1 salaries)
 
+// Task 5: Implementing Promotions
+console.log("\nTask 5: Implementing Promotions");
 
 
+// Logging test cases outputs:
+company.promoteToManager(emp1, 3);
+company.listEmployees();
+// Expected output: "Manager: Alice Johnson, ID: 101, Department: Sales, Salary: $5000, Team Size: 3"
